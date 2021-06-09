@@ -619,7 +619,7 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20):
     rng_seed_length: <int> minimum length of random seed required
     """
 
-    safety_checklist()
+    #safety_checklist()
     ensure_bitcoind_running()
     require_minimum_bitcoind_version(170000) # getaddressesbylabel API new in v0.17.0
 
