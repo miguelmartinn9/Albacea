@@ -676,7 +676,7 @@ def withdraw_interactive():
     All data required for transaction construction is input at the terminal
     """
 
-    safety_checklist()
+    #safety_checklist()
     ensure_bitcoind_running()
     require_minimum_bitcoind_version(170000) # signrawtransaction API changed in v0.17.0
 
@@ -814,7 +814,7 @@ def withdraw_interactive():
     print("\nTransaction fingerprint (md5):")
     print(hash_md5(signed_tx["hex"]))
 
-    write_and_verify_qr_code("transaction", "transaction.png", signed_tx["hex"])
+    #write_and_verify_qr_code("transaction", "transaction.png", signed_tx["hex"])
 
 
 ################################################################################################
