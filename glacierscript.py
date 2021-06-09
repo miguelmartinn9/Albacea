@@ -660,8 +660,8 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20):
     print("{}".format(results["redeemScript"]))
     print("")
 
-    write_and_verify_qr_code("cold storage address", "address.png", results["address"])
-    write_and_verify_qr_code("redemption script", "redemption.png",
+    #write_and_verify_qr_code("cold storage address", "address.png", results["address"])
+    #write_and_verify_qr_code("redemption script", "redemption.png",
                        results["redeemScript"])
 
 
