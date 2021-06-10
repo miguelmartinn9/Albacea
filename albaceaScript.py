@@ -2,19 +2,19 @@
 
 ################################################################################################
 #
-# GlacierScript:  Part of the Glacier Protocol (http://glacierprotocol.org)
+# AlbaceaScript:  based on the Glacier Protocol (http://glacierprotocol.org)
 #
-# GlacierScript is designed specifically for use in the context of executing the broader Glacier
+# It is designed specifically for use in the context of executing the broader Glacier
 # Protocol, a step-by-step procedure for high-security cold storage of Bitcoin.  It is not
 # intended to be used as standalone software.
 #
-# GlacierScript primarily replaces tasks that users would otherwise be doing manually, such as
+# AlbaceScript primarily replaces tasks that users would otherwise be doing manually, such as
 # typing things on the command line, copying-and-pasting strings, and hand-editing JSON.  It
 # mostly consists of print statements, user input, string & JSON manipulation, and command-line
 # wrappers around Bitcoin Core and other applications (e.g. those involved in reading and writing
 # QR codes.)
 #
-# GlacierScript avoids cryptographic and other security-sensitive operations as much as possible.
+# AlbaceScript avoids cryptographic and other security-sensitive operations as much as possible.
 #
 # GlacierScript depends on the following command-line applications:
 # - Bitcoin Core (http://bitcoincore.org)
@@ -589,7 +589,7 @@ def entropy(n, length):
     """
     Generate n random strings for the user from /dev/random
     """
-    safety_checklist()
+    #safety_checklist()
 
     print("\n\n")
     print("Making {} random data strings....".format(n))
