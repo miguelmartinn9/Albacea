@@ -741,7 +741,7 @@ def withdraw_interactive():
         input_amount = utxo_sum
         fee = get_fee_interactive(
             source_address, keys, addresses, redeem_script, txs)
-        # Got this far
+
         if fee > input_amount:
             print("ERROR: Your fee is greater than the sum of your unspent transactions.  Try using larger unspent transactions. Exiting...")
             sys.exit()
@@ -749,9 +749,9 @@ def withdraw_interactive():
         print("\nPlease enter the decimal amount (in bitcoin) to withdraw to the destination address.")
         print("\nExample: For 2.3 bitcoins, enter \"2.3\".")
         print("\nAfter a fee of {0}, you have {1} bitcoins available to withdraw.".format(fee, input_amount - fee))
-        print("\n*** Technical note for experienced Bitcoin users:  If the withdrawal amount & fee are cumulatively less than the total amount of the unspent transactions, the remainder will be sent back to the same cold storage address as change. ***\n")
-        withdrawal_amount = input(
-            "Amount to send to {0} (leave blank to withdraw all funds stored in these unspent transactions): ".format(dest_address))
+        #withdrawal_amount = input(
+        #    "Amount to send to {0} (leave blank to withdraw all funds stored in these unspent transactions): ".format(dest_address))
+        withdrawal_amount = input("Amount to send (Maximum {0} BTC): ".format(input_amount - fee))
         if withdrawal_amount == "":
             withdrawal_amount = input_amount - fee
         else:
