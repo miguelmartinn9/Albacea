@@ -749,13 +749,12 @@ def withdraw_interactive():
         print("\nPlease enter the decimal amount (in bitcoin) to withdraw to the destination address.")
         print("\nExample: For 2.3 bitcoins, enter \"2.3\".")
         print("\nAfter a fee of {0}, you have {1} bitcoins available to withdraw.".format(fee, input_amount - fee))
-        #withdrawal_amount = input(
-        #    "Amount to send to {0} (leave blank to withdraw all funds stored in these unspent transactions): ".format(dest_address))
-        withdrawal_amount = input("Amount to send (Maximum {0} BTC): ".format(input_amount - fee))
-        if withdrawal_amount == "":
-            withdrawal_amount = input_amount - fee
-        else:
-            withdrawal_amount = Decimal(withdrawal_amount).quantize(SATOSHI_PLACES)
+
+        withdrawal_amount = ""
+        while withdrawal_amount == "":
+            withdrawal_amount = input("Amount to send (Maximum {0} BTC): ".format(input_amount - fee))
+        
+        withdrawal_amount = Decimal(withdrawal_amount).quantize(SATOSHI_PLACES)
 
         if fee + withdrawal_amount > input_amount:
             print("Error: fee + withdrawal amount greater than total amount available from unspent transactions")
