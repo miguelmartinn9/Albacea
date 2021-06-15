@@ -596,12 +596,15 @@ def entropy(n, length):
     print("If strings don't appear right away, please continually move your mouse cursor. These movements generate entropy which is used to create random data.\n")
 
     idx = 0
+    entropies = [] 
     while idx < n:
         seed = subprocess.check_output(
             "xxd -l {} -p /dev/random".format(length), shell=True)
         idx += 1
         seed = seed.decode('ascii').replace('\n', '')
         print("Computer entropy #{0}: {1}".format(idx, " ".join(chunk_string(seed, 4))))
+        entropies.append("".join(chunk_string(seed,4)))
+    return entropies
 
 
 ################################################################################################
@@ -628,6 +631,8 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20):
 
     keys = []
 
+    entropies = entropy(n, 20)
+
     while len(keys) < n:
         index = len(keys) + 1
         print("\nCreating private key #{}".format(index))
@@ -635,7 +640,9 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20):
         dice_seed_string = read_dice_seed_interactive(dice_seed_length)
         dice_seed_hash = hash_sha256(dice_seed_string)
 
-        rng_seed_string = read_rng_seed_interactive(rng_seed_length)
+        #rng_seed_string = read_rng_seed_interactive(rng_seed_length)
+        rng_seed_string = entropies[index-1]
+        print("USED ENTROPY ", index-1, "WHICH IS: ", entropies[index-1])
         rng_seed_hash = hash_sha256(rng_seed_string)
 
         # back to hex string
