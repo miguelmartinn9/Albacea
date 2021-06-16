@@ -34,6 +34,7 @@ import shlex
 import subprocess
 import sys
 import time
+import random
 
 # Taken from https://github.com/keis/base58
 from base58 import b58encode_check
@@ -236,10 +237,13 @@ def read_dice_seed_interactive(min_length):
     """
 
     def ask_for_dice_seed(x):
-        print("Enter {0} dice rolls (example: 62543 16325 21341...) Spaces are OK, and will be ignored:".format(x))
+        print("You can either: ")
+        print("- Enter {0} dice rolls Spaces are OK, and will be ignored:".format(x))
+        print("OR")
+        print("- You can use this randomly generated string: \n", dice_throw_generator())
 
     ask_for_dice_seed(min_length)
-    dice = input()
+    dice = input("Your input: ")
     dice = unchunk(dice)
 
     while not validate_dice_seed(dice, min_length):
@@ -255,6 +259,19 @@ def read_dice_seed_interactive(min_length):
 # private key generation
 #
 ################################################################################################
+
+def dice_throw_generator():
+    """
+    Emulates the result of throwing a dice 62 times. 
+    To generate cryptographically secure random numbers, we are using SystemRandom, which uses os.urandom()
+    
+    More info: https://realpython.com/python-random/
+    """
+
+    throw = ""
+    for i in range(0, 62):
+        throw += str(random.SystemRandom().randint(1, 6))
+    return throw
 
 def xor_hex_strings(str1, str2):
     """
