@@ -16,7 +16,7 @@
 #
 # AlbaceScript avoids cryptographic and other security-sensitive operations as much as possible.
 #
-# GlacierScript depends on the following command-line applications:
+# Albacea depends on the following command-line applications:
 # - Bitcoin Core (http://bitcoincore.org)
 # - qrencode (QR code writer: http://packages.ubuntu.com/xenial/qrencode)
 # - zbarimg (QR code reader: http://packages.ubuntu.com/xenial/zbar-tools)
@@ -667,8 +667,8 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20):
     print("{}".format(results["redeemScript"]))
     print("")
 
-    #write_and_verify_qr_code("cold storage address", "address.png", results["address"])
-    #write_and_verify_qr_code("redemption script", "redemption.png", results["redeemScript"])
+    write_and_verify_qr_code("cold storage address", "address.png", results["address"])
+    write_and_verify_qr_code("redemption script", "redemption.png", results["redeemScript"])
 
 
 ################################################################################################
@@ -820,7 +820,7 @@ def withdraw_interactive():
     print("\nTransaction fingerprint (md5):")
     print(hash_md5(signed_tx["hex"]))
 
-    #write_and_verify_qr_code("transaction", "transaction.png", signed_tx["hex"])
+    write_and_verify_qr_code("transaction", "transaction.png", signed_tx["hex"])
 
 
 ################################################################################################
