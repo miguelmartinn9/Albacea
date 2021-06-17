@@ -652,14 +652,15 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20):
 
     while len(keys) < n:
         index = len(keys) + 1
-        print("\nCreating private key #{}".format(index))
+        print("\n==========================================")
+        print("Creating private key #{}".format(index))
 
         dice_seed_string = read_dice_seed_interactive(dice_seed_length)
         dice_seed_hash = hash_sha256(dice_seed_string)
 
         #rng_seed_string = read_rng_seed_interactive(rng_seed_length)
         rng_seed_string = entropies[index-1]
-        print("USED ENTROPY ", index-1, "WHICH IS: ", entropies[index-1])
+        print("USED ENTROPY", index-1, "WHICH IS: ", entropies[index-1])
         rng_seed_hash = hash_sha256(rng_seed_string)
 
         # back to hex string
